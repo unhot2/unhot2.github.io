@@ -7941,7 +7941,7 @@ textarea.form-control-lg {
 }
 
 .rounded-circle {
-  border-radius: 50% !important;
+  border-radius: 18% !important;
 }
 
 .rounded-pill {
@@ -11333,6 +11333,7 @@ p.lead {
 #sideNav {
   padding-left: 1rem;
   padding-right: 1rem;
+  background-color: #343a40;
 }
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 800;
@@ -11353,7 +11354,7 @@ p.lead {
     left: 0;
     display: flex;
     flex-direction: column;
-    width: 17rem;
+    width: 20rem;
     height: 100vh;
   }
   #sideNav .navbar-brand {
@@ -11363,7 +11364,6 @@ p.lead {
   }
   #sideNav .navbar-brand .img-profile {
     max-width: 10rem;
-    max-height: 10rem;
     border: 0.5rem solid rgba(255, 255, 255, 0.2);
   }
   #sideNav .navbar-collapse {
@@ -11427,7 +11427,7 @@ section.resume-section .resume-section-content {
 }
 @media (min-width: 992px) {
   section.resume-section {
-    padding-left: 3rem;
+    padding-left: 8rem;
     padding-right: 3rem;
     padding-top: 5rem;
     padding-bottom: 5rem;

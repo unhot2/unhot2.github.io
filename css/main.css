@@ -1,0 +1,93 @@
+@media (max-width: 991px){
+   .eppsHome {
+    width: 100%;
+  }
+
+  .erpHome {
+    width : 100%;
+  }
+
+  #slider-div img{
+    width: 300px;
+  }
+
+  #slider-div2 img{
+    width: 300px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .eppsHome {
+    position: absolute;
+    top: 3138px;
+    left: 1173px;
+    width: 254px;
+  }
+
+  .erpHome {
+    position: absolute;
+    top: 3422px;
+    left: 1173px;
+    width: 254px;
+  }
+
+  .skillTable th{
+    width: 138px;
+    vertical-align: top;
+    font-size: 25px;
+  }
+
+  .skillTable td{
+    font-size: 21px;
+  }
+
+  .skillTable li{
+    padding-bottom: 10px;
+  }
+
+  .certification-li {
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .name {
+    font-size:20px;
+    color: white;
+  }
+
+  .slick-arrow{
+    z-index: 2; /* prev버튼은 위치 이동시 이미지 뒤로 숨겨짐 */
+  }
+  .slick-prev.slick-arrow{ /* prev 이전 */
+	left: 15px;
+  }
+  .slick-next.slick-arrow{ /* next 다음 */
+    right: 15px;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  #slider-div img {
+    width : 1020px;
+  }
+
+  #slider-div2 img {
+    width : 1020px;
+  }
+
+  .addProject {
+    background: #3d689e;
+    margin-left: 138px;
+    width: 1020px;
+    height: 49px;
+    border-radius: 9px;
+    text-align: center;
+    padding-top: 14px;
+    font-size: 16px;
+    color: white;
+  }
+}
