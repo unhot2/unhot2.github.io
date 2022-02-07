@@ -69,21 +69,21 @@
   }
   .eppsHome {
     position: absolute;
-    top: 4060px;
+    top: 5042px;
     left: 1173px;
     width: 254px;
   }
 
   .erpHome {
     position: absolute;
-    top: 4334px;
+    top: 5318px;
     left: 1173px;
     width: 254px;
   }
 
   .daedongHome {
     position: absolute;
-    top: 4655px;
+    top: 5639px;
     left: 1173px;
     width: 254px;
   }
@@ -311,4 +311,10 @@
     top: -2px;
     right: 347px;
   }
+}
+
+@media (min-width: 1921px) {
+	#slider-div img {
+    	margin : 0 auto;
+  	}
 }
