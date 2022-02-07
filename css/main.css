@@ -317,4 +317,25 @@
 	#slider-div img {
     	margin : 0 auto;
   	}
+  	
+  	.eppsHome {
+	    position: absolute;
+	    top: 5499px;
+	    left: 1173px;
+	    width: 254px;
+ 	}
+
+	.erpHome {
+	    position: absolute;
+	    top: 5773px;
+	    left: 1173px;
+	    width: 254px;
+  	}
+
+	.daedongHome {
+	    position: absolute;
+	    top: 6093px;
+	    left: 1173px;
+	    width: 254px;
+  	}
 }
