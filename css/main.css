@@ -13,6 +13,14 @@
   .daedongHome {
     width: 100%;
   }
+  
+  .izsolution {
+    width: 100%;
+  }
+
+  .everyview {
+    width: 100%;
+  }
 
   #slider-div img{
     width: 100%;
@@ -233,6 +241,9 @@
   .progress-bar.color-10 {
     background: #ffc99a;
   }
+  .progress-bar.color-11 {
+    background: #3873bd;
+  }
 
 
   /* 퍼센트  설정 */
@@ -288,6 +299,12 @@
   }
   .progress-bar.color-10 span {
     color: #ffc99a;
+    top: -17px;
+    right: -125px;
+  }
+
+  .progress-bar.color-11 span {
+    color: #3873bd;
     top: -17px;
     right: -125px;
   }
@@ -353,6 +370,12 @@
     top: -2px;
     right: 248px;
   }
+  .progress-bar.color-11:after {
+    background:#3873bd;
+    position: absolute;
+    top: -2px;
+    right: 197px;
+  }
 }
 
 @media (min-width: 1921px) {
@@ -362,36 +385,36 @@
   	
   	.eppsHome {
 	    position: absolute;
-	    top: 5499px;
+	    top: 5387px;
 	    left: 1173px;
 	    width: 254px;
  	}
 
 	.erpHome {
 	    position: absolute;
-	    top: 5773px;
+	    top: 5659px;
 	    left: 1173px;
 	    width: 254px;
   	}
 
 	.daedongHome {
 	    position: absolute;
-	    top: 6093px;
+	    top: 5982px;
 	    left: 1173px;
 	    width: 254px;
   	}
 
     .izsolution {
       position: absolute;
-      top: 6391px;
+      top: 6306px;
       left: 1173px;
       width: 254px;
     }
   
     .everyview {
       position: absolute;
-      top: 6778px;
+      top: 6695px;
       left: 1173px;
-      width: 254px;
+      width: 284px;
     }
 }
