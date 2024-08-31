@@ -64,6 +64,10 @@
     margin-bottom: 30px;
   }
 
+  .portfolio-detail img {
+    width : 100%;
+  }
+
   /* PROGRESS BAR 설정 */
   .progress {
     height: 6px;
@@ -274,35 +278,35 @@
   }
   .eppsHome {
     position: absolute;
-    top: 5042px;
+    top: 5909px;
     left: 1173px;
     width: 254px;
   }
 
   .erpHome {
     position: absolute;
-    top: 5318px;
+    top: 6187px;
     left: 1173px;
     width: 254px;
   }
 
   .daedongHome {
     position: absolute;
-    top: 5639px;
+    top: 6513px;
     left: 1173px;
     width: 254px;
   }
 
   .izsolution {
     position: absolute;
-    top: 6391px;
+    top: 5009px;
     left: 1173px;
     width: 254px;
   }
 
   .everyview {
     position: absolute;
-    top: 6778px;
+    top: 5425px;
     left: 1173px;
     width: 254px;
   }
