@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>임원 보고 메일 차트 생성기</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100%;
+        }
+
+        .left {
+            width: 50%;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .right {
+            flex: 1;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .splitter {
+            width: 6px;
+            background: #ccc;
+            cursor: col-resize;
+        }
+
+        .mail-template {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #chartContainer {
+            margin-top: 20px;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        #pngResult {
+            margin-top: 20px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div style="width: 50%;">
+        <!-- 메일 미리보기 -->
+
+        <div class="left" id="leftPanel" style="width: 90%;">
+                <div class="mail-template">
+
+                    <h2>📊 월간 매출 보고</h2>
+
+                    <p>안녕하세요 임원 여러분.</p>
+
+                    <p>
+                        금월 매출 실적을 보고드립니다.
+                    </p>
+
+                    <table border="1" cellspacing="0" cellpadding="8">
+                        <tr>
+                            <th>구분</th>
+                            <th>금액</th>
+                        </tr>
+                        <tr>
+                            <td>목표</td>
+                            <td>100억</td>
+                        </tr>
+                        <tr>
+                            <td>실적</td>
+                            <td>92억</td>
+                        </tr>
+                    </table>
+
+                    <h3>매출 추이</h3>
+
+                    <img id="mailChartImage" src="" style="max-width:700px;border:1px solid #ddd;">
+
+                    <p>
+                        상세 내용 검토 부탁드립니다.
+                    </p>
+
+                </div>
+        </div>
+        <div class="form-group" style="padding-left: 20px;">
+            <label>받는 사람 이메일</label>
+            <input id="receiverEmail" type="email" value="unhot2@nate.com" style="width: 120px;">
+            <button onclick="sendMail()">메일 보내기</button>
+        </div>
+    </div>
+
+    <!-- 입력 영역 -->
+    <div class="right">
+
+        <h2>차트 데이터 입력</h2>
+
+        <div class="form-group">
+            <label>월(Label)</label>
+            <input
+                    id="labels"
+                    value="1월,2월,3월,4월,5월,6월"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>매출 데이터</label>
+            <input
+                    id="values"
+                    value="12,18,22,25,30,35"
+            >
+        </div>
+
+        <button onclick="createChart()">
+            차트 생성
+        </button>
+
+        <button onclick="exportPng()">
+            PNG 생성
+        </button>
+
+        <div id="chartContainer">
+            <canvas id="salesChart"></canvas>
+        </div>
+
+        <div id="pngResult"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+    let chart;
+
+    emailjs.init({
+        publicKey: "mIBaDKo8ogbAA05hI"
+    });
+
+    function createChart() {
+
+        const labels =
+            document.getElementById("labels")
+                .value
+                .split(",");
+
+        const values =
+            document.getElementById("values")
+                .value
+                .split(",")
+                .map(Number);
+
+        const ctx =
+            document.getElementById("salesChart");
+
+        if(chart){
+            chart.destroy();
+        }
+
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: '매출',
+                    data: values
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
+
+    function exportPng() {
+
+        const canvas =
+            document.getElementById("salesChart");
+
+        const pngData =
+            canvas.toDataURL("image/png");
+
+        document.getElementById("mailChartImage")
+            .src = pngData;
+
+        document.getElementById("pngResult")
+            .innerHTML =
+            "<h3>Base64 PNG 생성 완료</h3>";
+    }
+
+    createChart();
+
+
+    // Splitter
+    const splitter =
+        document.getElementById("splitter");
+
+    const left =
+        document.getElementById("leftPanel");
+
+    let dragging = false;
+
+    splitter.addEventListener("mousedown", () => {
+        dragging = true;
+    });
+
+    document.addEventListener("mouseup", () => {
+        dragging = false;
+    });
+
+    document.addEventListener("mousemove", (e) => {
+
+        if(!dragging) return;
+
+        left.style.width = e.clientX + "px";
+    });
+
+    function sendMail() {
+
+        const email = document.getElementById("receiverEmail").value;
+        console.log('email', email);
+
+        const labels =
+        document.getElementById("labels")
+            .value
+            .split(",");
+
+        const values =
+            document.getElementById("values")
+                .value
+                .split(",")
+                .map(Number);
+
+        const chartConfig = {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "매출",
+                    data: values
+                }]
+            }
+        };
+
+        const chartUrl =
+            "https://quickchart.io/chart?c=" +
+            encodeURIComponent(JSON.stringify(chartConfig));
+
+        console.log(chartUrl);
+
+        emailjs.send(
+            "service_j9khgar",
+            "template_qlvnuj8",
+            {
+                to_email: email,
+                image: chartUrl
+            }
+        )
+        .then(function(response) {
+
+            console.log(response);
+
+            alert("메일 발송 성공");
+
+        })
+        .catch(function(error) {
+
+            console.error(error);
+
+            alert("메일 발송 실패");
+        });
+    }
+
+
+</script>
+
+</script>
+
+</body>
+</html>
