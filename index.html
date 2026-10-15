@@ -2518,6 +2518,11 @@ html.pf-modal-open { overflow: hidden; }
 .pf-modal-label { margin: 20px 0 8px; font-size: 13px; font-weight: 500; color: var(--text-secondary); }
 .pf-modal-strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
 .pf-modal-strip img { flex: none; height: 180px; width: auto; border-radius: 8px; border: 0.5px solid var(--border); scroll-snap-align: start; }
+.pf-modal-points { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.7; color: var(--text-secondary); word-break: keep-all; }
+.pf-featured { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.pf-featured-img { display: block; width: 100%; height: 100%; min-height: 240px; object-fit: cover; object-position: left top; background: #0e0d0b; }
+.pf-featured-body { padding: 18px 20px; }
+.pf-featured-feats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
 .pf-modal-slides img { display: block; width: 100%; height: auto; border-radius: 8px; border: 0.5px solid var(--border); margin-bottom: 12px; }
 @media (max-width: 600px) {
   body { padding: 0 !important; }
@@ -2533,6 +2538,9 @@ html.pf-modal-open { overflow: hidden; }
   .pf-stack { padding: 14px 16px 18px !important; }
   #vis-container div[style*="padding:16px 20px"] { padding: 14px 14px !important; }
   #vis-container p, #vis-container span { word-break: keep-all; }
+  .pf-featured { grid-template-columns: minmax(0, 1fr); }
+  .pf-featured-img { height: auto; min-height: 0; aspect-ratio: 16 / 10; }
+  .pf-featured-body { padding: 14px; }
   .pf-modal { width: calc(100vw - 16px); max-height: calc(100vh - 16px); border-radius: 12px; }
   .pf-modal-head { padding: 14px 16px; }
   .pf-modal-body { padding: 14px 16px 20px; }
@@ -2787,6 +2795,17 @@ html.pf-modal-open { overflow: hidden; }
 </div></div>
 </div>
 <p style="margin:16px 0 8px;font-size:12px;color:var(--text-muted)">개인·팀 프로젝트</p>
+<div class="pf-card-open pf-featured" data-modal="modal-motoground" role="button" tabindex="0" aria-haspopup="dialog" style="background:var(--surface-2);border:2px solid var(--border-accent);border-radius:12px;overflow:hidden;margin-bottom:12px">
+<img class="pf-featured-img" src="img/motoground/home.png" alt="모토그라운드 메인 화면">
+<div class="pf-featured-body">
+<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:4px"><span style="font-size:11px;background:var(--bg-accent);color:var(--text-accent);padding:2px 8px;border-radius:var(--radius)">대표 프로젝트</span><span style="font-size:12px;color:var(--text-muted)">개인 · 2026.10 ~ 진행 중</span></div>
+<p style="margin:0 0 4px;font-size:18px;font-weight:500">모토그라운드</p>
+<p style="margin:0 0 12px;font-size:13px;color:var(--text-secondary);line-height:1.6">중고 매물부터 정비 기록, 라이딩 장소, 커뮤니티까지 라이더에게 필요한 걸 한 곳에 모은 바이크 플랫폼</p>
+<div class="pf-featured-feats"><span><i class="ti ti-messages" aria-hidden="true"></i> 커뮤니티·댓글·추천</span><span><i class="ti ti-motorbike" aria-hidden="true"></i> 중고 매물·필터 검색</span><span><i class="ti ti-tool" aria-hidden="true"></i> 내 차고·정비 기록</span><span><i class="ti ti-map-pin" aria-hidden="true"></i> 플레이스·카카오맵</span></div>
+<div style="display:flex;gap:4px;flex-wrap:wrap;font-size:11px;margin-bottom:12px"><span style="background:var(--surface-1);padding:2px 8px;border-radius:var(--radius)">React 18</span><span style="background:var(--surface-1);padding:2px 8px;border-radius:var(--radius)">Vite</span><span style="background:var(--surface-1);padding:2px 8px;border-radius:var(--radius)">Supabase</span><span style="background:var(--surface-1);padding:2px 8px;border-radius:var(--radius)">PostgreSQL · RLS</span><span style="background:var(--surface-1);padding:2px 8px;border-radius:var(--radius)">Kakao Map</span><span style="background:var(--surface-1);padding:2px 8px;border-radius:var(--radius)">Vercel</span></div>
+<div style="display:flex;gap:12px;font-size:12px;color:var(--text-accent)"><a href="https://motoground-test.vercel.app/" target="_blank" rel="noopener" style="color:var(--text-accent);text-decoration:none"><i class="ti ti-external-link" aria-hidden="true"></i> Live</a><a href="https://github.com/unhot2/motoground" target="_blank" rel="noopener" style="color:var(--text-accent);text-decoration:none"><i class="ti ti-brand-github" aria-hidden="true"></i> Code</a><span><i class="ti ti-zoom-in" aria-hidden="true"></i> 상세보기</span></div>
+</div>
+</div>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px">
 <div class="pf-card-open" data-modal="modal-killeve" role="button" tabindex="0" aria-haspopup="dialog" style="background:var(--surface-2);border:0.5px solid var(--border);border-radius:12px;overflow:hidden">
 <img class="pf-personal-img" src="img/killeve.gif" alt="KILLEVE 화면" style="display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#FFFFFF;border-bottom:0.5px solid var(--border)">
@@ -2831,6 +2850,35 @@ html.pf-modal-open { overflow: hidden; }
 <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;padding:8px 0;border-top:0.5px solid var(--border)"><div><p style="margin:0;font-weight:500">학점은행제</p><p style="margin:0;color:var(--text-secondary)">경영학 학사 · 학점 3.71/4.5</p></div><span style="font-size:12px;color:var(--text-muted)">2010.12 – 2015.02</span></div>
 </div>
 </div>
+<dialog class="pf-modal" id="modal-motoground" aria-labelledby="modal-motoground-title">
+<div class="pf-modal-head">
+<div><p id="modal-motoground-title" class="pf-modal-title">모토그라운드</p><p class="pf-modal-sub">바이크 커뮤니티 플랫폼 · 개인 프로젝트</p></div>
+<button type="button" class="pf-modal-close" aria-label="닫기"><i class="ti ti-x" aria-hidden="true"></i></button>
+</div>
+<div class="pf-modal-body">
+<dl class="pf-modal-info">
+<dt>기간</dt><dd>2026.10 ~ 진행 중</dd>
+<dt>링크</dt><dd><a href="https://motoground-test.vercel.app/" target="_blank" rel="noopener" style="color:var(--text-accent)">motoground-test.vercel.app</a> · <a href="https://github.com/unhot2/motoground" target="_blank" rel="noopener" style="color:var(--text-accent)">GitHub</a></dd>
+<dt>역할</dt><dd>기획 · 디자인 · 프론트엔드 · DB 설계 · 배포 (1인)</dd>
+<dt>기능</dt><dd>커뮤니티(게시판 6종·댓글·추천·공유), 중고 매물(7종 필터·찜·판매자 연락처), 내 차고(소모품 상태·정비·비용 기록), 플레이스(카카오맵·내 주변·후기), 모델 탐색, 회원가입·프로필</dd>
+<dt>사용기술</dt><dd>React 18, React Router, Vite, Supabase(PostgreSQL·Auth·Storage), Kakao Map·공유 API, Vercel</dd>
+</dl>
+<p class="pf-modal-label">구현 포인트</p>
+<ul class="pf-modal-points">
+<li>RLS 정책으로 읽기는 누구나, 쓰기·수정·삭제는 본인만 가능하게 설계하고 공지·장소 등록은 운영자만 허용</li>
+<li>조회수·댓글수·추천수는 DB에서 자동 계산해 회원이 직접 바꿀 수 없도록 구성</li>
+<li>Supabase 연결 전에도 예시 데이터로 화면이 동작하도록 데이터 계층 분리</li>
+<li>회원별 폴더 단위 이미지 업로드, 모바일 하단 탭바로 반응형 지원</li>
+</ul>
+<p class="pf-modal-label">화면</p>
+<div class="pf-modal-slides">
+<img src="img/motoground/home.png" alt="모토그라운드 메인 화면" loading="lazy">
+<img src="img/motoground/community.png" alt="모토그라운드 커뮤니티 화면" loading="lazy">
+<img src="img/motoground/market.png" alt="모토그라운드 중고 매물 화면" loading="lazy">
+<img src="img/motoground/explore.png" alt="모토그라운드 모델 탐색 화면" loading="lazy">
+</div>
+</div>
+</dialog>
 <dialog class="pf-modal" id="modal-killeve" aria-labelledby="modal-killeve-title">
 <div class="pf-modal-head">
 <div><p id="modal-killeve-title" class="pf-modal-title">KILLEVE</p><p class="pf-modal-sub">AWS를 활용한 남성복 쇼핑몰 · 개인 프로젝트</p></div>
