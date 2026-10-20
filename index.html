@@ -2519,6 +2519,12 @@ html.pf-modal-open { overflow: hidden; }
 .pf-modal-strip { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px; }
 .pf-modal-strip img { flex: none; height: 180px; width: auto; border-radius: 8px; border: 0.5px solid var(--border); scroll-snap-align: start; }
 .pf-modal-points { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.7; color: var(--text-secondary); word-break: keep-all; }
+.mg-screens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
+.mg-screen { margin: 0; display: grid; gap: 8px; align-content: start; }
+.mg-screen img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 8px; border: 0.5px solid var(--border); }
+.mg-screen figcaption { display: grid; gap: 2px; font-size: 12px; line-height: 1.6; word-break: keep-all; }
+.mg-screen figcaption b { font-size: 13px; font-weight: 500; }
+.mg-screen figcaption span { color: var(--text-secondary); }
 .ac-lede { margin: 16px 0 0; font-size: 14px; line-height: 1.75; color: var(--text-secondary); word-break: keep-all; }
 .ac-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; counter-reset: acstep; }
 .ac-flow li { counter-increment: acstep; background: var(--surface-1); border: 0.5px solid var(--border); border-radius: 10px; padding: 12px; display: grid; gap: 4px; align-content: start; }
@@ -2590,6 +2596,7 @@ html.pf-modal-open { overflow: hidden; }
   .pf-stack { padding: 14px 16px 18px !important; }
   #vis-container div[style*="padding:16px 20px"] { padding: 14px 14px !important; }
   #vis-container p, #vis-container span { word-break: keep-all; }
+  .mg-screens { grid-template-columns: minmax(0, 1fr); }
   .ac-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ac-notes { grid-template-columns: minmax(0, 1fr); }
   .ac-feats { grid-template-columns: minmax(0, 1fr); }
@@ -2930,22 +2937,51 @@ html.pf-modal-open { overflow: hidden; }
 <dt>기간</dt><dd>2026.10 (2일)</dd>
 <dt>링크</dt><dd><a href="https://motoground-test.vercel.app/" target="_blank" rel="noopener" style="color:var(--text-accent)">motoground-test.vercel.app</a> · <a href="https://github.com/unhot2/motoground" target="_blank" rel="noopener" style="color:var(--text-accent)">GitHub</a></dd>
 <dt>역할</dt><dd>기획 · 디자인 · 프론트엔드 · DB 설계 · 배포 (1인)</dd>
-<dt>기능</dt><dd>커뮤니티(게시판 6종·댓글·추천·공유), 중고 매물(7종 필터·찜·판매자 연락처), 내 차고(소모품 상태·정비·비용 기록), 플레이스(카카오맵·내 주변·후기), 모델 탐색, 회원가입·프로필</dd>
+<dt>기능</dt><dd>커뮤니티(게시판 6종·댓글·추천·공유), 중고 매물(7종 필터·찜·판매자 연락처), 용품 거래, 모델 탐색, 플레이스(카카오맵·내 주변·후기), 내 차고(소모품 상태·정비·비용 기록), 회원가입·프로필</dd>
 <dt>사용기술</dt><dd>Claude Code, React 18, React Router, Vite, Supabase(PostgreSQL·Auth·Storage), Kakao Map·공유 API, Vercel</dd>
 </dl>
+<p class="ac-lede">중고 매물을 찾고, 내 바이크 정비 기록을 남기고, 라이더 카페나 정비소를 지도에서 찾고, 다른 라이더와 이야기하는 일을 한 사이트에서 할 수 있게 만든 바이크 플랫폼입니다.</p>
+
 <p class="pf-modal-label">구현 포인트</p>
 <ul class="pf-modal-points">
-<li>RLS 정책으로 읽기는 누구나, 쓰기·수정·삭제는 본인만 가능하게 설계하고 공지·장소 등록은 운영자만 허용</li>
-<li>조회수·댓글수·추천수는 DB에서 자동 계산해 회원이 직접 바꿀 수 없도록 구성</li>
-<li>Supabase 연결 전에도 예시 데이터로 화면이 동작하도록 데이터 계층 분리</li>
-<li>회원별 폴더 단위 이미지 업로드, 모바일 하단 탭바로 반응형 지원</li>
+<li><b>권한은 DB에서 직접 관리</b> · 글은 누구나 읽을 수 있지만 쓰기·수정·삭제는 작성자 본인만 가능하도록 DB 보안 정책(RLS)으로 막음. 공지와 장소 등록은 운영자만 가능</li>
+<li><b>숫자는 자동으로 계산</b> · 조회수, 댓글 수, 추천 수, 찜 수, 후기 별점은 DB가 알아서 계산하고, 회원이 값을 직접 바꿀 수 없게 막음</li>
+<li><b>DB 연결 없이도 모든 화면 확인</b> · 데이터를 불러오는 부분을 따로 분리해, DB가 연결되지 않아도 예시 데이터로 모든 화면이 동작</li>
+<li><b>카카오 지도·공유 연동</b> · 플레이스는 카카오맵으로 위치를 보여 주고 내 주변 가까운 순 정렬과 길찾기를 지원. 게시글·매물은 카카오톡 공유 지원</li>
+<li><b>회원 기능 전체 구현</b> · 회원가입, 로그인, 비밀번호 재설정, 프로필 수정, 회원 탈퇴까지 구현하고, 사진은 회원별 폴더에만 올릴 수 있게 구성</li>
+<li><b>모바일 대응</b> · 작은 화면에서는 하단 탭바로 주요 메뉴를 바로 이동</li>
 </ul>
+
 <p class="pf-modal-label">화면</p>
-<div class="pf-modal-slides">
+<div class="mg-screens">
+<figure class="mg-screen">
 <img src="img/motoground/home.png" alt="모토그라운드 메인 화면" loading="lazy">
+<figcaption><b>메인</b><span>바이크 검색과 인기 검색어, 각 메뉴로 바로 가는 첫 화면</span></figcaption>
+</figure>
+<figure class="mg-screen">
 <img src="img/motoground/community.png" alt="모토그라운드 커뮤니티 화면" loading="lazy">
-<img src="img/motoground/market.png" alt="모토그라운드 중고 매물 화면" loading="lazy">
+<figcaption><b>커뮤니티</b><span>공지, 자유게시판, 투어 후기, 정비 Q&amp;A, 모임·번개, 용품 리뷰 6개 게시판. 댓글·답글, 추천, 공유</span></figcaption>
+</figure>
+<figure class="mg-screen">
+<img src="img/motoground/market.png" alt="모토그라운드 중고 매물 목록 화면" loading="lazy">
+<figcaption><b>중고 매물</b><span>장르·제조사·지역·가격·배기량·연식·주행거리 7가지 필터와 정렬로 매물 검색</span></figcaption>
+</figure>
+<figure class="mg-screen">
+<img src="img/motoground/market-detail.jpg" alt="모토그라운드 중고 매물 상세 화면" loading="lazy">
+<figcaption><b>매물 상세</b><span>사진 넘겨 보기, 가격·지역, 찜과 공유. 판매자 연락처는 로그인한 회원에게만 공개하고 안전거래 체크리스트 제공</span></figcaption>
+</figure>
+<figure class="mg-screen">
 <img src="img/motoground/explore.png" alt="모토그라운드 모델 탐색 화면" loading="lazy">
+<figcaption><b>모델 탐색</b><span>멋진·편한·여행·클래식 중 원하는 라이딩 성향을 고르면 어울리는 기종을 추천</span></figcaption>
+</figure>
+<figure class="mg-screen">
+<img src="img/motoground/place.png" alt="모토그라운드 플레이스 화면" loading="lazy">
+<figcaption><b>플레이스</b><span>라이더 카페, 정비소, 바이크 주차 등을 카카오맵과 목록으로 함께 보고, 분류·지역·내 주변으로 찾기</span></figcaption>
+</figure>
+<figure class="mg-screen">
+<img src="img/motoground/goods.jpg" alt="모토그라운드 용품 화면" loading="lazy">
+<figcaption><b>용품</b><span>헬멧, 재킷, 글러브 등 라이더가 올린 용품을 종류·상태·지역별로 비교</span></figcaption>
+</figure>
 </div>
 </div>
 </dialog>
