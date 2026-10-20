@@ -2947,9 +2947,9 @@ html.pf-modal-open { overflow: hidden; }
 <p class="pf-modal-label">목표 한 줄이 결재된 보고서가 되기까지</p>
 <ol class="ac-flow">
 <li><b>지시</b><span>대표 에이전트에게 작업을 배정. 하트비트나 반복 업무가 대신 가져가기도 함</span></li>
-<li><b>위임</b><span><code>create_task</code>로 자기 팀원에게만 하위 작업 생성</span></li>
+<li><b>위임</b><span>일을 쪼개 자기 팀원에게만 하위 작업으로 맡김</span></li>
 <li><b>실행</b><span>팀원마다 다른 어댑터(Claude Code, Codex, 로컬 LLM)로 실제 작업</span></li>
-<li><b>승인 요청</b><span>사람이 정할 일은 <code>request_approval</code>로 올리고, 승인되면 같은 세션을 이어서 진행</span></li>
+<li><b>승인 요청</b><span>사람이 정할 일은 승인 메뉴에 올리고, 승인되면 하던 작업을 이어서 진행</span></li>
 <li><b>정리</b><span>하위 작업이 모두 끝나면 상위 담당자가 자동으로 이어서 결과를 정리</span></li>
 <li><b>결재</b><span>대표 직속이 올린 정리는 결재란 있는 업무 보고서로 받은 편지함에</span></li>
 </ol>
@@ -2970,7 +2970,7 @@ html.pf-modal-open { overflow: hidden; }
 <div class="ac-show">
 <img src="img/agentcrew/office.gif" alt="AgentCrew 픽셀 오피스. 대표가 일을 맡기자 전원 회의 후 PM이 팀원 책상으로 가서 일을 전달하고 각자 작업한다" loading="lazy">
 <dl class="ac-notes">
-<div><dt>마지막 도구 호출로 행동 결정</dt><dd>Write·Edit는 타이핑, Read·Grep은 파일 읽기, Bash는 명령 실행, create_task는 일 맡기기</dd></div>
+<div><dt>마지막 도구 호출로 행동 결정</dt><dd>Write·Edit는 타이핑, Read·Grep은 파일 읽기, Bash는 명령 실행, 하위 작업을 만들면 일 맡기기</dd></div>
 <div><dt>위임은 걸어가서 전달</dt><dd>하위 작업이 생기면 담당자 책상까지 BFS 길찾기로 걸어가 잠시 머문 뒤 복귀</dd></div>
 <div><dt>대표 지시 = 전원 회의</dt><dd>대표가 일을 맡기면 20초 동안 모두 회의실에 모여 앉음</dd></div>
 <div><dt>쉬는 사람은 휴게실</dt><dd>일이 없으면 휴게실을, 대표는 대표실을 돌아다님. 끌어서 소파에 앉힐 수 있음</dd></div>
