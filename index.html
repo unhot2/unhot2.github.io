@@ -3074,7 +3074,7 @@ html.pf-modal-open { overflow: hidden; }
 
 <p class="pf-modal-label">구현 포인트</p>
 <ul class="pf-modal-points">
-<li><b>어댑터 5종을 한 이벤트 형식으로</b> · Claude Code·Hermes의 stream-json, Codex exec --json, OpenAI 호환 로컬 서버 응답을 같은 실행 이벤트로 바꿔 로그·오피스·결과물 기록이 어댑터를 몰라도 동작</li>
+<li><b>어댑터 5종을 한 이벤트 형식으로</b> · Hermes, Claude Code, Codex, LM Studio, Ollama의 서로 다른 출력을 같은 실행 이벤트로 바꿔 로그·오피스·결과물 기록이 어댑터를 몰라도 동작</li>
 <li><b>MCP 위임 도구와 실행별 토큰</b> · list_team, create_task, list_subtasks, request_approval을 MCP 서버로 제공. 실행마다 토큰을 발급해 자기 팀에만 위임 가능하고 실행이 끝나면 회수</li>
 <li><b>예산을 실행 상한으로</b> · 남은 월 예산을 Claude Code 실행의 비용 상한으로 걸고, 이어서 실행한 세션의 누적 비용이 두 번 합산되지 않게 앞 실행분을 뺌</li>
 <li><b>로컬 전용 서버</b> · 에이전트가 이 PC에서 명령을 실행하므로 127.0.0.1에만 열고 JSON 요청만 받음. 서버가 꺼졌다 켜지면 실행 중이던 기록을 정리</li>
